@@ -196,15 +196,15 @@ function axel() {
     pushTransform();
     gl.uniform3f(u_color_loc, 0.8,0.8,0.8 );
     transform.scale(2, 0.2);
-    filledCircle();
+    filledSquare();
     popTransform();
     pushTransform();
     transform.translate(-1,0);
-    square(framenumber/50);
+    wheel(framenumber/50);
     popTransform();
     pushTransform();
     transform.translate(1,0);
-    square(framenumber/33);
+    wheel(framenumber/33);
     popTransform();
 }
 
