@@ -144,7 +144,7 @@ function nestedSquares() {
     for (let  i = 1; i < 16; i++) {
         gl.uniform3f( u_color_loc, i/16, 0, 0.8 - i/16);
         transform.scale(0.8);
-        transform.rotate(framenumber / 200);
+        transform.rotate(framenumber / 800);
         square();
     }
 }
@@ -209,10 +209,10 @@ function axel() {
 }
 
 /**
- * Draws a "cart" made up of two red rectangles and two rotating wheels.
- * The cart is 6 units long.
+ * Draws a "car" made up of two red rectangles and two rotating wheels.
+ * The car is 6 units long.
  */
-function cart() {
+function car() {
     
     gl.uniform3f(u_color_loc, 0, 0.58, 0.7);
     pushTransform();
@@ -275,7 +275,7 @@ function draw() {
     
     transform.translate( -1.6 + 3.2*((150+framenumber) % 300)/300,-0.6 ); // move car repeatedly from left to right
     transform.scale(0.2);   // reduce size from 6 to 1.2
-    cart();
+    car();
     
     popTransform();  
 }
