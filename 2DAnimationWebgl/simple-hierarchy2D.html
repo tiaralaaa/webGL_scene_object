@@ -141,11 +141,11 @@ function circle() {
 function nestedSquares() {
     gl.uniform3f( u_color_loc, 0, 0, 1);
     square();
-    for (let  i = 1; i < 6; i++) {
+    for (let  i = 1; i < 16; i++) {
         gl.uniform3f( u_color_loc, i/16, 0, 0.8 - i/16);
         transform.scale(0.8);
         transform.rotate(framenumber / 200);
-        wheel(-framenumber/30);
+        square();
     }
 }
 
