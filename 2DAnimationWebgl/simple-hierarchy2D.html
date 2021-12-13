@@ -167,15 +167,19 @@ function wheel(angle) {
     transform.rotate(angle);
     gl.uniform3f(u_color_loc, 0,0,0);
     filledCircle();
+    //
     pushTransform();
+    transform.scale(1);
+    gl.uniform3f(u_color_loc, 1,1,1);
+    filledCircle();
+    //
     transform.scale(0.8);
-    gl.uniform3f(u_color_loc, 0.8,0.8,0.8);
+    gl.uniform3f(u_color_loc, 0.5,0.5,0.5);
     filledCircle();
-    transform.scale(0.3);
-    gl.uniform3f(u_color_loc, 0,0,0);
-    filledCircle();
+    //
     popTransform(); 
-    transform.scale(0.9);
+    //
+    transform.scale(1);
     spokes();
 }
 
@@ -196,24 +200,37 @@ function tire(angle) {
 }
 
 /**
- *  Draws a bar with a rotating wheel on each end.  The bar is rotating, with
- *  angle of rotation given by (framenumber/127) radians.  The bar is 2 units
+ *  Draws a cassette with a rotating wheel on each end. The cassette bars are rotating, with
+ *  angle of rotation given by (framenumber/127) radians. The bar is 2 units
  *  long.  With the wheels, the object is 3 units long.
  */
-function axel() {
+function cassette() {
+    // longer bar
     transform.rotate( framenumber/127 );
     pushTransform();
+    gl.uniform3f(u_color_loc, 0,0,0);
+    transform.translate(-0.1,0);
+    transform.scale(2, 1);
+    filledSquare();
+    popTransform();
+    // shorter bar
+    pushTransform();
     gl.uniform3f(u_color_loc, 0.8,0.8,0.8 );
+    transform.translate(-0.1,-0.6);
     transform.scale(2, 0.2);
     filledSquare();
     popTransform();
+    // wheel 1, left
     pushTransform();
-    transform.translate(-1,0);
-    wheel(framenumber/50);
+    transform.translate(-0.6,0);
+    transform.scale(0.5, 0.5);
+    wheel(framenumber/127);
     popTransform();
+    // wheel 2, right
     pushTransform();
-    transform.translate(1,0);
-    wheel(framenumber/33);
+    transform.translate(0.4,0);
+    transform.scale(0.5, 0.5);
+    wheel(framenumber/127);
     popTransform();
 }
 
@@ -275,9 +292,9 @@ function draw() {
     popTransform();
     pushTransform();
     
-    transform.translate(0.5,0.5);   // move center of axel to (0.5,0.5)
+    transform.translate(0.5,0.5);   // move center of cassette to (0.5,0.5)
     transform.scale(0.3);           // reduce size from 3 to 0.9
-    axel();
+    cassette();
     
     popTransform();
     pushTransform();
