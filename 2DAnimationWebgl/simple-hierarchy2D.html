@@ -185,13 +185,16 @@ function wheel(angle) {
 
 function tire(angle) {
     transform.rotate(angle);
+    //outside circle
     gl.uniform3f(u_color_loc, 0,0,0);
     filledCircle();
+    //mid circle
     pushTransform();
     transform.scale(0.5);
     gl.uniform3f(u_color_loc, 0.8,0.8,0.8);
     filledCircle();
     transform.scale(0.3);
+    //inner circe
     gl.uniform3f(u_color_loc, 0,0,0);
     filledCircle();
     popTransform(); 
@@ -240,28 +243,33 @@ function cassette() {
  */
 function car() {
     
+    //bottom square
     gl.uniform3f(u_color_loc, 0, 0.58, 0.7);
     pushTransform();
     transform.translate(0,1);
     transform.scale(6,1.8);
     filledSquare();
     popTransform();
+    //top square
     gl.uniform3f(u_color_loc, 0.8,0.8,0.8);
     pushTransform();
     transform.translate(-0.7,2);
     transform.scale(4.6,1.8);
     filledSquare();
     popTransform();
+    //front tire
     pushTransform();
     transform.translate(1.65,-0.05);
     transform.scale(1.6);
     tire(-framenumber/30);
     popTransform();
+    //back tire
     pushTransform();
     transform.translate(-1.65,-0.05);
     transform.scale(1.6);
     tire(-framenumber/30);
     popTransform();
+    //car window
     pushTransform();
     transform.translate(1,2.3);
     transform.scale(1,1);
@@ -299,7 +307,7 @@ function draw() {
     popTransform();
     pushTransform();
     
-    transform.translate( -1.6 + 3.2*((150+framenumber) % 300)/300,-0.6 ); // move car repeatedly from left to right
+    transform.translate( -1.6 + 3.2*((150+framenumber) % 300)/300,-0.7 ); // move car repeatedly from left to right
     transform.scale(0.2);   // reduce size from 6 to 1.2
     car();
     
@@ -454,7 +462,7 @@ window.onload = init;  // Arrange for init() to be called after page has been lo
 
 <noscript><p><b>Sorry, but this page requires JavaScript.</b></p></noscript>
 
-<h2><label><input type="checkbox" id="animationCheckbox"><b>Turn on Animation</b></label></h2>
+<h2><label><input type="checkbox" id="animationCheckbox"><b>Turn On Animation</b></label></h2>
 
 <div id="canvas-holder">
 <canvas id="webglcanvas" width="600" height="600"></canvas>
